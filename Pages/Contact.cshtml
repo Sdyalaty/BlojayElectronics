@@ -1,0 +1,37 @@
+﻿@page
+@model ContactModel
+@{
+    ViewData["Title"] = "Contact Us";
+}
+<div class="container my-5">
+    <div class="row">
+        <div class="col-md-6">
+            <h2>Get in Touch</h2>
+            <form method="post">
+                <div class="mb-3">
+                    <label>Name</label>
+                    <input asp-for="Contact.Name" class="form-control" required />
+                </div>
+                <div class="mb-3">
+                    <label>Email</label>
+                    <input asp-for="Contact.Email" class="form-control" required />
+                </div>
+                <div class="mb-3">
+                    <label>Message</label>
+                    <textarea asp-for="Contact.Message" class="form-control" rows="5" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Send</button>
+            </form>
+            @if (Model.Sent)
+            {
+                <div class="alert alert-success mt-3">Message sent!</div>
+            }
+        </div>
+        <div class="col-md-6">
+            <h2>Our Office</h2>
+            <p>KG 123 St, Kigali, Rwanda</p>
+            <p>+250 788 123 456</p>
+            <p>info@blojayelectronics.rw</p>
+        </div>
+    </div>
+</div>

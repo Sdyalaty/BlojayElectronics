@@ -1,0 +1,17 @@
+﻿@page
+@model OrderSuccessModel
+@{
+    ViewData["Title"] = "Order Confirmation";
+}
+<div class="container my-5 text-center">
+    <div class="card shadow-sm">
+        <div class="card-body py-5">
+            <i class="fas fa-check-circle text-success fa-5x mb-3"></i>
+            <h1>Thank You!</h1>
+            <p>Your order has been placed successfully.</p>
+            <p><strong>Order #@Model.Order?.Id</strong></p>
+            <p>Total: @Model.Order?.TotalAmount.ToString("C")</p>
+            <a href="/Products/Index" class="btn btn-primary">Continue Shopping</a>
+        </div>
+    </div>
+</div>

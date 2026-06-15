@@ -1,0 +1,38 @@
+﻿@page
+@model ProductsModel
+@{
+    ViewData["Title"] = "Manage Products";
+}
+<div class="container my-4">
+    <div class="d-flex justify-content-between">
+        <h1>Products</h1>
+        <a asp-page="/Admin/AddProduct" class="btn btn-primary">Add New</a>
+    </div>
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success">@TempData["SuccessMessage"]</div>
+    }
+    <table class="table table-bordered">
+        <thead class="table-dark">
+            <tr><th>ID</th><th>Image</th><th>Name</th><th>Category</th><th>Price</th><th>Actions</th></tr>
+        </thead>
+        <tbody>
+            @foreach (var p in Model.Products)
+            {
+                <tr>
+                    <td>@p.Id</td>
+                    <td><img src="@p.ImageUrl" style="width:50px;" /></td>
+                    <td>@p.Name</td>
+                    <td>@p.Category?.Name</td>
+                    <td>@p.Price.ToString("C")</td>
+                    <td>
+                        <a asp-page="/Admin/EditProduct" asp-route-id="@p.Id" class="btn btn-sm btn-warning">Edit</a>
+                        <form method="post" asp-page-handler="Delete" asp-route-id="@p.Id" style="display:inline;">
+                            <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Delete?')">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

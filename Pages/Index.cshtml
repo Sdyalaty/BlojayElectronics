@@ -1,0 +1,51 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Welcome to Blojay Electronics";
+}
+<section class="bg-dark text-white text-center py-5">
+    <div class="container">
+        <h1 class="display-4">BlojayElectronics</h1>
+        <p class="lead">Your one-stop shop for the latest gadgets and electronics</p>
+        <a href="/Products/Index" class="btn btn-primary btn-lg">Shop Now</a>
+    </div>
+</section>
+<section class="container my-5">
+    <h2 class="text-center mb-4">Featured Products</h2>
+    <div class="row">
+        @foreach (var product in Model.FeaturedProducts)
+        {
+            <div class="col-md-3 col-sm-6 mb-4">
+                <div class="card h-100">
+                    <img src="@product.ImageUrl" class="card-img-top" alt="@product.Name" style="height:200px;object-fit:cover;">
+                    <div class="card-body">
+                        <h5 class="card-title">@product.Name</h5>
+                        <p class="card-text">@product.Description</p>
+                        <p class="fw-bold">@product.Price.ToString("C")</p>
+                        <form method="post" asp-page-handler="AddToCart" asp-route-id="@product.Id">
+                            <button type="submit" class="btn btn-outline-primary w-100">Add to Cart</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</section>
+<section class="bg-light py-5">
+    <div class="container">
+        <h2 class="text-center mb-4">Shop by Category</h2>
+        <div class="row text-center">
+            @foreach (var cat in Model.Categories)
+            {
+                <div class="col-md-3 col-6 mb-3">
+                    <a href="/Products/Index?selectedCategoryId=@cat.Id" class="text-decoration-none">
+                        <div class="p-3 border rounded bg-white">
+                            <i class="fas fa-microchip fa-3x mb-2"></i>
+                            <h5>@cat.Name</h5>
+                        </div>
+                    </a>
+                </div>
+            }
+        </div>
+    </div>
+</section>
