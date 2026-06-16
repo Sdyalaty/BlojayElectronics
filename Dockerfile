@@ -10,5 +10,9 @@ RUN dotnet publish BlojayElectronics.csproj -c Release -o /app/publish
 FROM mcr.microsoft.com/dotnet/aspnet:10.0
 WORKDIR /app
 COPY --from=build /app/publish .
+
+# Create writable directory for SQLite
+RUN mkdir -p /app/data && chmod 777 /app/data
+
 EXPOSE 8080
 ENTRYPOINT ["dotnet", "BlojayElectronics.dll"]
