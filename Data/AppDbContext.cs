@@ -16,16 +16,17 @@ namespace BlojayElectronics.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Product>().Property(p => p.Price).HasPrecision(18, 2);
-            modelBuilder.Entity<OrderItem>().Property(oi => oi.UnitPrice).HasPrecision(18, 2);
-            modelBuilder.Entity<Order>().Property(o => o.TotalAmount).HasPrecision(18, 2);
+            // SQLite doesn't need HasPrecision – remove those lines
 
+            // Seed categories (static data)
             modelBuilder.Entity<Category>().HasData(
                 new Category { Id = 1, Name = "Smartphones" },
                 new Category { Id = 2, Name = "Laptops" },
                 new Category { Id = 3, Name = "Audio & Headphones" },
                 new Category { Id = 4, Name = "Accessories" }
             );
+
+            // No product seed – products added by admin
         }
     }
 }
