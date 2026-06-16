@@ -7,11 +7,34 @@ using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// Load configuration (environment variables will override)
+builder.Configuration
+    .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
+    .AddJsonFile($"appsettings.{builder.Environment.EnvironmentName}.json", optional: true, reloadOnChange: true)
+    .AddEnvironmentVariables();
+
 builder.Services.AddRazorPages();
 
-var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+// --- Determine the connection string ---
+string connectionString;
+
+if (builder.Environment.IsProduction())
+{
+    // Use SQLite with the production path (Render's /app/data)
+    connectionString = "Data Source=/app/data/BlojayElectronics.db";
+    Console.WriteLine("🟢 Production environment detected. Using SQLite with /app/data path.");
+}
+else
+{
+    // For development, use the connection string from config or default
+    connectionString = builder.Configuration.GetConnectionString("DefaultConnection")
+                       ?? "Data Source=BlojayElectronics.db";
+}
+
+Console.WriteLine($"📌 Connection string: {connectionString}");
+
 builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseSqlServer(connectionString));
+    options.UseSqlite(connectionString));
 
 builder.Services.AddDistributedMemoryCache();
 builder.Services.AddSession(options =>
