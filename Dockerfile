@@ -4,7 +4,7 @@ WORKDIR /src
 COPY ["BlojayElectronics.csproj", "."]
 RUN dotnet restore
 COPY . .
-RUN dotnet publish BlojayElectronics.csproj -c Release -o /app/publish   # ← FIXED
+RUN dotnet publish BlojayElectronics.csproj -c Release -o /app/publish
 
 # Runtime stage
 FROM mcr.microsoft.com/dotnet/aspnet:10.0
