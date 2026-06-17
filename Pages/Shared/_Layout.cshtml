@@ -23,7 +23,13 @@
                         <li class="nav-item"><a class="nav-link" asp-page="/Cart"><i class="fas fa-shopping-cart"></i> Cart</a></li>
                         <li class="nav-item"><a class="nav-link" asp-page="/About">About</a></li>
                         <li class="nav-item"><a class="nav-link" asp-page="/Contact">Contact</a></li>
-                        @await Component.InvokeAsync("LoginStatus")
+                        <!-- Hardcoded Sign In / Sign Up links (always clickable) -->
+                        <li class="nav-item">
+                            <a class="nav-link" asp-page="/Account/SignIn">Sign In</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-page="/Account/SignUp">Sign Up</a>
+                        </li>
                     </ul>
                 </div>
             </div>
