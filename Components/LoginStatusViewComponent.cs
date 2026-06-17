@@ -11,7 +11,18 @@ namespace BlojayElectronics.Components
         public async Task<IViewComponentResult> InvokeAsync()
         {
             var user = await _auth.GetLoggedInCustomerAsync();
-            return View(new { IsLoggedIn = user != null, CustomerName = user?.FullName ?? "" });
+            var model = new LoginStatusViewModel
+            {
+                IsLoggedIn = user != null,
+                CustomerName = user?.FullName ?? ""
+            };
+            return View(model);
         }
+    }
+
+    public class LoginStatusViewModel
+    {
+        public bool IsLoggedIn { get; set; }
+        public string CustomerName { get; set; } = string.Empty;
     }
 }

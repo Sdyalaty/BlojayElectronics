@@ -1,4 +1,5 @@
-﻿@model dynamic
+﻿@model BlojayElectronics.Components.LoginStatusViewModel
+
 @if (Model.IsLoggedIn)
 {
     <li class="nav-item dropdown">
@@ -14,6 +15,10 @@
 }
 else
 {
-    <li class="nav-item"><a class="nav-link" asp-page="/Account/SignIn">Sign In</a></li>
-    <li class="nav-item"><a class="nav-link" asp-page="/Account/SignUp">Sign Up</a></li>
+    <li class="nav-item">
+        <a class="nav-link" asp-page="/Account/SignIn">Sign In</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" asp-page="/Account/SignUp">Sign Up</a>
+    </li>
 }
