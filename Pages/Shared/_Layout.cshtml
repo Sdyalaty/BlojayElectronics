@@ -12,39 +12,54 @@
     <header>
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <div class="container">
-                <a class="navbar-brand" asp-page="/Index">BlojayElectronics</a>
+                <a class="navbar-brand" href="/">BlojayElectronics</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav ms-auto">
-                        <li class="nav-item"><a class="nav-link" asp-page="/Index">Home</a></li>
-                        <li class="nav-item"><a class="nav-link" asp-page="/Products/Index">Products</a></li>
-                        <li class="nav-item"><a class="nav-link" asp-page="/Cart"><i class="fas fa-shopping-cart"></i> Cart</a></li>
-                        <li class="nav-item"><a class="nav-link" asp-page="/About">About</a></li>
-                        <li class="nav-item"><a class="nav-link" asp-page="/Contact">Contact</a></li>
-                        <!-- Hardcoded Sign In / Sign Up links (always clickable) -->
                         <li class="nav-item">
-                            <a class="nav-link" asp-page="/Account/SignIn">Sign In</a>
+                            <a class="nav-link" href="/">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" asp-page="/Account/SignUp">Sign Up</a>
+                            <a class="nav-link" href="/Products/Index">Products</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/Cart">
+                                <i class="fas fa-shopping-cart"></i> Cart
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/About">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/Contact">Contact</a>
+                        </li>
+                        <!-- Plain HTML links (definitely clickable) -->
+                        <li class="nav-item">
+                            <a class="nav-link" href="/Account/SignIn">Sign In</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/Account/SignUp">Sign Up</a>
                         </li>
                     </ul>
                 </div>
             </div>
         </nav>
     </header>
+
     <main role="main" class="pb-3">
         @RenderBody()
     </main>
+
     <footer class="border-top footer text-muted bg-light">
         <div class="container text-center py-3">
             &copy; 2026 BlojayElectronics - All Rights Reserved
             <br />
-            <a asp-page="/Admin/Login" class="text-muted">Admin Login</a>
+            <a href="/Admin/Login" class="text-muted">Admin Login</a>
         </div>
     </footer>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
